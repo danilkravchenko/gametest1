@@ -18,7 +18,7 @@ public class GameUpdater {
     }
 
     public void update(float delta){
-        countCollisions();
+        //countCollisions();
         level.update(delta);
     }
 
