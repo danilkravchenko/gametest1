@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Created by Крава on 30.10.2015.
  */
+
 public class LevelLoader {
     Array<Ball> balls;
     TimeScore score;

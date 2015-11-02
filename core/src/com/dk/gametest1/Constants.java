@@ -13,7 +13,7 @@ public class Constants {
     public static float VIEWPORT_GUI_HEIGHT = 480;
 
     public static final int SMALL_BALL_RADIUS = 128;
-    public static final float SMALL_BALL_SPEED = 10f;
+    public static final float SMALL_BALL_SPEED = 15f;
 
     public static final int CIRCLE_RADIUS = 128;
     public static final int CIRCLE_RADIUS2 = 112;
