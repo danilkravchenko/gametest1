@@ -24,14 +24,13 @@ public class GameRenderer implements Disposable {
     }
 
     private void init(){
-        guiFont = new BitmapFont(Gdx.files.internal("Arial72.fnt"), true);
+        guiFont = new BitmapFont(Gdx.files.internal("f72.fnt"), true);
         guiFont.setColor(Color.BLACK);
         guiFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
-        cameraGUI = new OrthographicCamera(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
         camera.position.set(0, 0, 0);
+        cameraGUI = new OrthographicCamera(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
         cameraGUI.position.set(0, 0, 0);
         cameraGUI.setToOrtho(true);
         cameraGUI.update();

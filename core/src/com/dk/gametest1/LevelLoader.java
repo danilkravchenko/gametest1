@@ -2,6 +2,7 @@ package com.dk.gametest1;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -9,23 +10,21 @@ import com.badlogic.gdx.utils.Array;
  */
 
 public class LevelLoader {
-    Array<Ball> balls;
+    Ball[] balls;
     TimeScore score;
     public LevelLoader(String path){
         init();
     }
 
     private void init(){
-        balls = new Array<Ball>();
+        balls = new Ball[Constants.BALLS_QUANTITY];
         score = new TimeScore();
-        for(int i = 0; i < 5; i++){
-            Ball ball = new Ball();
-            ball.origin.set(ball.getRadius() / 2, ball.getRadius() / 2);
-            ball.position.set(MathUtils.random(-Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_WIDTH / 2), MathUtils.random(-Constants.VIEWPORT_HEIGHT / 2, Constants.VIEWPORT_HEIGHT / 2));
-            balls.add(ball);
+        for(int i = 0; i < Constants.BALLS_QUANTITY; i++){
+            balls[i] = new Ball();
+            balls[i].origin.set(balls[i].getRadius() / 2, balls[i].getRadius() / 2);
+            balls[i].position.set(MathUtils.random(-Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_WIDTH / 2), MathUtils.random(-Constants.VIEWPORT_HEIGHT / 2, Constants.VIEWPORT_HEIGHT / 2));
         }
     }
-
 
     public void update(float delta){
         for (Ball ball :

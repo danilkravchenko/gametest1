@@ -35,11 +35,11 @@ public class Ball extends GameObject{
 
     private void init(){
         previousPos = new Vector2();
-        radius = Constants.SMALL_BALL_RADIUS;
-        dimension.set(1.5f, 1.5f);
-        angle = MathUtils.random(0.0f, MathUtils.PI * 2);
+        radius = Constants.SMALL_BALL_RADIUS_FOR_BITMAP;
+        dimension.set(Constants.BALL_RADIUS, Constants.BALL_RADIUS);
         cirBounds = new Circle(0, 0, getSmallestDimension());
 
+        angle = MathUtils.random(0, MathUtils.PI * 2);
         speedXY.x = Constants.SMALL_BALL_SPEED * MathUtils.cos(angle);
         speedXY.y = Constants.SMALL_BALL_SPEED * MathUtils.sin(angle);
 
@@ -68,6 +68,7 @@ public class Ball extends GameObject{
         return pixmap;
     }
 
+
     @Override
     public void render(SpriteBatch spriteBatch) {
         bigTail.render(spriteBatch);
@@ -86,17 +87,13 @@ public class Ball extends GameObject{
     public void update(float deltaTime){
         float coA = speedXY.x / Constants.SMALL_BALL_SPEED;
         float siA = speedXY.y / Constants.SMALL_BALL_SPEED;
-            bigTail.position.set(position.x - bigTail.deltaStep.y * coA + dimension.x / 2 - bigTail.dimension.x / 2,
+        bigTail.position.set(position.x - bigTail.deltaStep.y * coA + dimension.x / 2 - bigTail.dimension.x / 2,
                     position.y - bigTail.deltaStep.y * siA + dimension.y / 2 - bigTail.dimension.y / 2);
-            smallTail.position.set(position.x - smallTail.deltaStep.y * coA  + dimension.x / 2 - smallTail.dimension.x / 2,
+        smallTail.position.set(position.x - smallTail.deltaStep.y * coA  + dimension.x / 2 - smallTail.dimension.x / 2,
                     position.y - smallTail.deltaStep.y * siA + dimension.y / 2 - smallTail.dimension.y / 2);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isTouched()){
-            super.update(deltaTime);
-            bigTail.update(deltaTime);
-            smallTail.update(deltaTime);
-        }
-
+        super.update(deltaTime);
+        bigTail.update(deltaTime);
+        smallTail.update(deltaTime);
     }
 
     public float getSmallestDimension(){
