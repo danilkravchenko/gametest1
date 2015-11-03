@@ -1,7 +1,6 @@
 package com.dk.gametest1;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,7 +24,7 @@ public class GameRenderer implements Disposable {
 
     private void init(){
         guiFont = new BitmapFont(Gdx.files.internal("f72.fnt"), true);
-        guiFont.setColor(Color.BLACK);
+        guiFont.setColor(Constants.DARK);
         guiFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
@@ -54,7 +53,7 @@ public class GameRenderer implements Disposable {
             Constants.DESKTOP_SCALE_X = width/Constants.VIEWPORT_GUI_WIDTH;
             guiFont.getData().setScale(Constants.DESKTOP_SCALE_X);
 
-        }else {
+        } else {
             Constants.VIEWPORT_HEIGHT = height / (width / Constants.VIEWPORT_WIDTH);
             camera.viewportHeight = Constants.VIEWPORT_HEIGHT;
 

@@ -1,14 +1,10 @@
 package com.dk.gametest1;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
-
-import javafx.scene.text.Font;
 
 /**
  * Created by Крава on 31.10.2015.
@@ -43,7 +39,7 @@ public class TimeScore extends GameObject {
                 increaseTime();
             }
         }, 1, 1);
-        dimension.set(3f, 3f);
+        dimension.set(5f, 5f);
         position.set(0 - dimension.x / 2, 0 - dimension.y / 2);
         Pixmap pix = createPixmap();
         Texture texture = new Texture(pix);
@@ -55,11 +51,11 @@ public class TimeScore extends GameObject {
         int radius = Constants.CIRCLE_RADIUS;
         int radius2 = Constants.CIRCLE_RADIUS2;
         Pixmap pixmap = new Pixmap(radius * 2 + 1, radius * 2 + 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(1, 1, 1, 1);
+        pixmap.setColor(Constants.LIGHT);
         pixmap.fill();
-        pixmap.setColor(0, 0, 0, 1);
+        pixmap.setColor(Constants.GRAY);
         pixmap.fillCircle(radius, radius, radius);
-        pixmap.setColor(1, 1, 1, 1);
+        pixmap.setColor(Constants.LIGHT);
         pixmap.fillCircle(radius, radius, radius2);
         return pixmap;
     }
