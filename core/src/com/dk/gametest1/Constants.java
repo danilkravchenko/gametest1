@@ -20,12 +20,12 @@ public class Constants {
     public static final float SMALL_BALL_SPEED = 15f;   //easy - 15, medium - 20, hard - 25
 
     public static final int CIRCLE_RADIUS = 300;        //timer outer radius
-    public static final int CIRCLE_RADIUS2 = 280;       //timer inner radius
+    public static final int CIRCLE_RADIUS2 = 285;       //timer inner radius
 
     public static float MOBILE_SCALE_X = 1;
     public static float DESKTOP_SCALE_X = 1;
 
-    public static final int FONT_SIZE = 72;
+    public static final int FONT_SIZE = 81;
 
     public static final Color DARK = new Color(0.066f, 0.094f, 0.121f, 1);
     public static final Color LIGHT = new Color(0.95f, 0.95f, 0.95f, 1);
