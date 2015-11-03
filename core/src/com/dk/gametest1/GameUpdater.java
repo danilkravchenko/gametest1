@@ -2,10 +2,7 @@ package com.dk.gametest1;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-
-import java.awt.event.KeyListener;
 
 /**
  * Created by Крава on 30.10.2015.

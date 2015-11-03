@@ -24,7 +24,7 @@ public class GameRenderer implements Disposable {
 
     private void init(){
         guiFont = new BitmapFont(Gdx.files.internal("f72.fnt"), true);
-        guiFont.setColor(Constants.DARK);
+        guiFont.setColor(Constants.GRAY);
         guiFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
@@ -90,7 +90,7 @@ public class GameRenderer implements Disposable {
     private void renderGUITimer(SpriteBatch batch){
         float scale;
         if(Gdx.app.getType() == Application.ApplicationType.Desktop){
-            scale = Constants.DESKTOP_SCALE_X;;
+            scale = Constants.DESKTOP_SCALE_X;
         }else {
             scale = Constants.MOBILE_SCALE_X;
         }

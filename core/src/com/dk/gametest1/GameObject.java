@@ -1,6 +1,5 @@
 package com.dk.gametest1;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -9,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by Крава on 30.10.2015.
  */
+
 public abstract class GameObject {
     Vector2 position;
     Vector2 origin;
