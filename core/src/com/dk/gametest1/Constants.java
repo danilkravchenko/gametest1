@@ -19,8 +19,8 @@ public class Constants {
     public static final int SMALL_BALL_RADIUS_FOR_BITMAP = 128;
     public static final float SMALL_BALL_SPEED = 15f;   //easy - 15, medium - 20, hard - 25
 
-    public static final int CIRCLE_RADIUS = 300;        //timer outer radius
-    public static final int CIRCLE_RADIUS2 = 285;       //timer inner radius
+    public static final int CIRCLE_RADIUS = 150;        //timer outer radius
+    public static final int CIRCLE_RADIUS2 = 143;       //timer inner radius
 
     public static float MOBILE_SCALE_X = 1;
     public static float DESKTOP_SCALE_X = 1;
