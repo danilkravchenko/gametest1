@@ -50,9 +50,6 @@ public class GameUpdater extends InputAdapter{
 
     @Override
     public boolean keyUp(int keycode) {
-        if(keycode == Input.Keys.BACK || keycode == Input.Keys.ESCAPE){
-            backToMenu();
-        }
         return false;
     }
 

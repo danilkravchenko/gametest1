@@ -2,6 +2,7 @@ package com.dk.gametest1;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 
 /**
@@ -16,6 +17,7 @@ private PauseRenderer pauseRenderer;
     @Override
     public void show() {
         pauseRenderer = new PauseRenderer();
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
@@ -23,9 +25,13 @@ private PauseRenderer pauseRenderer;
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         pauseRenderer.render();
+        if(Gdx.input.isKeyPressed(Input.Keys.BACK) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            game.setScreen(new MenuScreen(game));
+        }
         if(Gdx.input.isTouched()){
             game.setScreen(new GameScreen(game));
         }
+
     }
 
     @Override
@@ -41,6 +47,7 @@ private PauseRenderer pauseRenderer;
     @Override
     public void hide() {
         pauseRenderer.dispose();
+        Gdx.input.setCatchBackKey(false);
     }
 
 }
