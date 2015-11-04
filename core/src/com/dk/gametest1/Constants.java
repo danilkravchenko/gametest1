@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Color;
  */
 
 public class Constants {
-    public static final int BALLS_QUANTITY = 3;     //easy - 3, medium - 4, hard - 5 (посмотрим как будет с препятствиями)
+    public static final int BALLS_QUANTITY = 5;     //easy - 3, medium - 4, hard - 5 (посмотрим как будет с препятствиями)
     public static final float BALL_RADIUS = 0.8f;   //размер шарика
 
     public static float VIEWPORT_WIDTH = 10.0f;
@@ -17,7 +17,7 @@ public class Constants {
     public static float VIEWPORT_GUI_HEIGHT = 480;
 
     public static final int SMALL_BALL_RADIUS_FOR_BITMAP = 128;
-    public static final float SMALL_BALL_SPEED = 15f;   //easy - 15, medium - 20, hard - 25
+    public static final float SMALL_BALL_SPEED = 25f;   //easy - 15, medium - 20, hard - 25
 
     public static final int CIRCLE_RADIUS = 150;        //timer outer radius
     public static final int CIRCLE_RADIUS2 = 143;       //timer inner radius

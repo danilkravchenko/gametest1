@@ -1,8 +1,10 @@
-package com.dk.gametest1;
+package com.dk.gametest1.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.dk.gametest1.AbstractScreen;
+import com.dk.gametest1.Constants;
 
 /**
  * Created by Крава on 03.11.2015.
@@ -12,10 +14,14 @@ public class GameScreen extends AbstractScreen {
     private GameUpdater gameUpdater;
     private boolean pause;
 
-    public GameScreen(Game game){
+    public GameScreen(Game game) {
         super(game);
     }
 
+    /**
+     * the same as init method
+     * setCatchBackKey allows to catch action when user presses back button
+     */
     @Override
     public void show() {
         gameUpdater = new GameUpdater(game);
@@ -24,16 +30,25 @@ public class GameScreen extends AbstractScreen {
         pause = false;
     }
 
+    /**
+     * updating world if pause if false and rendering whenever the pause is true or false
+     * @param delta
+     */
     @Override
     public void render(float delta) {
-        if(!pause){
+        if (!pause) {
             gameUpdater.update(delta);
         }
-        Gdx.gl.glClearColor(Constants.LIGHT.r, Constants.LIGHT.g, Constants.LIGHT.b, 1);
+        Gdx.gl.glClearColor(Constants.LIGHT.r, Constants.LIGHT.g, Constants.LIGHT.b, 1);//Clears the screen to color set in parameters
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gameRenderer.render();
     }
 
+    /**
+     * occurs if the screen size has been changed
+     * @param width new width
+     * @param height new height
+     */
     @Override
     public void resize(int width, int height) {
         gameRenderer.resize(width, height);
@@ -44,15 +59,13 @@ public class GameScreen extends AbstractScreen {
         pause = true;
     }
 
+    /**
+     * the same as dispose method
+     */
     @Override
     public void hide() {
         gameRenderer.dispose();
         Gdx.input.setCatchBackKey(false);
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
     }
 
     @Override

@@ -1,16 +1,20 @@
-package com.dk.gametest1;
+package com.dk.gametest1.pause;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.dk.gametest1.AbstractScreen;
+import com.dk.gametest1.game.GameScreen;
+import com.dk.gametest1.menu.MenuScreen;
 
 /**
  * Created by Крава on 03.11.2015.
  */
 public class PauseScreen extends AbstractScreen {
-private PauseRenderer pauseRenderer;
-    public PauseScreen(Game game){
+    private PauseRenderer pauseRenderer;
+
+    public PauseScreen(Game game) {
         super(game);
     }
 
@@ -25,10 +29,10 @@ private PauseRenderer pauseRenderer;
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         pauseRenderer.render();
-        if(Gdx.input.isKeyPressed(Input.Keys.BACK) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             game.setScreen(new MenuScreen(game));
         }
-        if(Gdx.input.isTouched()){
+        if (Gdx.input.isTouched()) {
             game.setScreen(new GameScreen(game));
         }
 
