@@ -7,7 +7,8 @@ import com.dk.gametest1.AbstractScreen;
 import com.dk.gametest1.Constants;
 
 /**
- * Created by Крава on 03.11.2015.
+ * Just game screen
+ * Created by dekay on 03.11.2015.
  */
 public class GameScreen extends AbstractScreen {
     private GameRenderer gameRenderer;
@@ -19,7 +20,7 @@ public class GameScreen extends AbstractScreen {
     }
 
     /**
-     * the same as init method
+     * The same as init method
      * setCatchBackKey allows to catch action when user presses back button
      */
     @Override
@@ -31,7 +32,8 @@ public class GameScreen extends AbstractScreen {
     }
 
     /**
-     * updating world if pause if false and rendering whenever the pause is true or false
+     * Updating world if pause if false and rendering whenever the pause is true or false
+     *
      * @param delta
      */
     @Override
@@ -45,8 +47,9 @@ public class GameScreen extends AbstractScreen {
     }
 
     /**
-     * occurs if the screen size has been changed
-     * @param width new width
+     * Occurs if the screen size has been changed
+     *
+     * @param width  new width
      * @param height new height
      */
     @Override
@@ -60,7 +63,7 @@ public class GameScreen extends AbstractScreen {
     }
 
     /**
-     * the same as dispose method
+     * The same as dispose method
      */
     @Override
     public void hide() {

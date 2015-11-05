@@ -8,7 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.dk.gametest1.Constants;
 
 /**
- * Created by Крава on 31.10.2015.
+ * Tail of ball
+ * Created by dekay on 31.10.2015.
  */
 public class Tail extends GameObject {
     Vector2 deltaStep;

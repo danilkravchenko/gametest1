@@ -7,7 +7,7 @@ import com.dk.gametest1.pause.PauseScreen;
 
 /**
  * GameUpdater holds level, updates and renders it
- * Created by Крава on 30.10.2015.
+ * Created by dekay on 30.10.2015.
  */
 public class GameUpdater extends InputAdapter {
     protected LevelLoader level;

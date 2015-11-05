@@ -10,25 +10,31 @@ import com.badlogic.gdx.utils.Disposable;
 import com.dk.gametest1.Constants;
 
 /**
- * Created by Крава on 30.10.2015.
+ * Renderer which draws game elements
+ * Created by dekay on 30.10.2015.
  */
 public class GameRenderer implements Disposable {
-    private GameUpdater gameUpdater;
-    private SpriteBatch spriteBatch;
-    private OrthographicCamera camera;
-    private OrthographicCamera cameraGUI;
-    private BitmapFont guiFont;
+    private GameUpdater gameUpdater; //updater to calculate new positions, dimensions and other of each object
+    private SpriteBatch spriteBatch; //batch to draw on it
+    private OrthographicCamera camera;//camera is like users eye has bounds of view
+    private OrthographicCamera cameraGUI;//camera to let user see font
+    private BitmapFont guiFont;//font
 
     public GameRenderer(GameUpdater gameUpdater) {
         this.gameUpdater = gameUpdater;
         init();
     }
 
+    /**
+     * Initializing all objects
+     */
     private void init() {
+        //Loading font from assets dir
         guiFont = new BitmapFont(Gdx.files.internal("f72.fnt"), true);
         guiFont.setColor(Constants.GRAY);
         guiFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         spriteBatch = new SpriteBatch();
+        //Creating two cameras for objects and for font
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         camera.position.set(0, 0, 0);
         cameraGUI = new OrthographicCamera(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
@@ -38,12 +44,21 @@ public class GameRenderer implements Disposable {
         camera.update();
     }
 
+    /**
+     * Deleting objects to release memory
+     */
     @Override
     public void dispose() {
         spriteBatch.dispose();
         guiFont.dispose();
     }
 
+    /**
+     * Resize method, the same as in MenuRenderer class and PauseRenderer
+     *
+     * @param width
+     * @param height
+     */
     public void resize(int width, int height) {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             Constants.VIEWPORT_WIDTH = width / (height / Constants.VIEWPORT_HEIGHT);
@@ -73,11 +88,19 @@ public class GameRenderer implements Disposable {
         camera.update();
     }
 
+    /**
+     * renders game and gui
+     */
     public void render() {
         renderGame(spriteBatch);
         renderGUI(spriteBatch);
     }
 
+    /**
+     * rendering level using batch
+     *
+     * @param batch
+     */
     private void renderGame(SpriteBatch batch) {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
@@ -89,7 +112,13 @@ public class GameRenderer implements Disposable {
         renderGUITimer(batch);
     }
 
+    /**
+     * Rendering timer using batch
+     *
+     * @param batch
+     */
     private void renderGUITimer(SpriteBatch batch) {
+        //Setting the scale by checking type of the app
         float scale;
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             scale = Constants.DESKTOP_SCALE_X;
@@ -98,6 +127,7 @@ public class GameRenderer implements Disposable {
         }
         batch.setProjectionMatrix(cameraGUI.combined);
         batch.begin();
+        //Setting position for the numbers of timer by using size of font and scale
         long time = gameUpdater.level.score.time;
         if (time < 10) {
             guiFont.draw(batch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 4 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));

@@ -8,7 +8,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.dk.gametest1.Constants;
 
 /**
- * Created by Крава on 31.10.2015.
+ * TimeScore or timer on the game screen
+ * Created by dekay on 31.10.2015.
  */
 public class TimeScore extends GameObject {
     protected long time; //time since the game has been started

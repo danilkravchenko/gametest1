@@ -10,6 +10,7 @@ import com.dk.gametest1.Constants;
 
 /**
  * Class Ball is being used for generating balls for game
+ * Created by dekay on 30.10.2015.
  */
 public class Ball extends GameObject {
     private Pixmap pixmap; //visual representation for ball
@@ -34,10 +35,13 @@ public class Ball extends GameObject {
         dimension.set(Constants.BALL_RADIUS, Constants.BALL_RADIUS);
         cirBounds = new Circle(0, 0, getSmallestDimension());
 
+        //Randomly calculating the start angle between direction of ball and X axis
+        //and calculating speed in m/s
         angle = MathUtils.random(0, MathUtils.PI * 2);
         speedXY.x = Constants.SMALL_BALL_SPEED * MathUtils.cos(angle);
         speedXY.y = Constants.SMALL_BALL_SPEED * MathUtils.sin(angle);
 
+        //Creating pixmap and texture for ball and adding Linear filter to the texture
         pixmap = createBallPixmap();
         Texture texture = new Texture(pixmap);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

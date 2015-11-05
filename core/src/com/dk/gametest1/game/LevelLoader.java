@@ -6,7 +6,7 @@ import com.dk.gametest1.Constants;
 
 /**
  * This class loads level and holds all game objects, updates them and renders
- * Created by Крава on 30.10.2015.
+ * Created by dekay on 30.10.2015.
  */
 
 public class LevelLoader {

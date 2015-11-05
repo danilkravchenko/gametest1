@@ -7,20 +7,30 @@ import com.dk.gametest1.AbstractScreen;
 import com.dk.gametest1.game.GameScreen;
 
 /**
- * Created by Крава on 03.11.2015.
+ * Menu screen collects elements that are going to be rendered on it
+ * Created by dekay on 03.11.2015.
  */
 public class MenuScreen extends AbstractScreen {
-    private MenuRenderer menuRenderer;
+    private MenuRenderer menuRenderer;//renderer to draw objects
 
     public MenuScreen(Game game) {
         super(game);
     }
 
+    /**
+     * Initializing all necessary objects
+     */
     @Override
     public void show() {
         menuRenderer = new MenuRenderer();
     }
 
+    /**
+     * Clearing screen to set color
+     * Rendering menu until user touches screen
+     *
+     * @param delta
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 0, 1);
@@ -31,6 +41,12 @@ public class MenuScreen extends AbstractScreen {
         }
     }
 
+    /**
+     * Occurs when the screen size has been changed
+     *
+     * @param width  new width
+     * @param height new height
+     */
     @Override
     public void resize(int width, int height) {
         menuRenderer.resize(width, height);
@@ -41,6 +57,9 @@ public class MenuScreen extends AbstractScreen {
 
     }
 
+    /**
+     * The same as dispose method
+     */
     @Override
     public void hide() {
         menuRenderer.dispose();
