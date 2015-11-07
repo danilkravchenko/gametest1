@@ -10,7 +10,7 @@ import com.dk.gametest1.pause.PauseScreen;
  * Created by dekay on 30.10.2015.
  */
 public class GameUpdater extends InputAdapter {
-    protected LevelLoader level;
+    protected Level level;
     private Game game;//main instance that allows to change screens
 
 
@@ -31,7 +31,7 @@ public class GameUpdater extends InputAdapter {
      * setting input processor which allows to react on the input actions
      */
     private void init() {
-        level = new LevelLoader("ddd");
+        level = new Level("ddd");
         Gdx.input.setInputProcessor(this);
     }
 
@@ -93,7 +93,7 @@ public class GameUpdater extends InputAdapter {
      */
     public void update(float delta) {
         //countCollisions();
-        level.update(delta);
+        level.act(delta);
     }
 
     private void countCollisions() {

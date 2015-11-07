@@ -2,8 +2,9 @@ package com.dk.gametest1.game;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Timer;
 import com.dk.gametest1.Constants;
 
@@ -11,7 +12,7 @@ import com.dk.gametest1.Constants;
  * TimeScore or timer on the game screen
  * Created by dekay on 31.10.2015.
  */
-public class TimeScore extends GameObject {
+public class TimeScore extends Actor {
     protected long time; //time since the game has been started
     private TextureRegion reg; //Texture for TimeScore
     private Timer timer; //Timer
@@ -32,8 +33,8 @@ public class TimeScore extends GameObject {
                 increaseTime();
             }
         }, 1, 1);
-        dimension.set(5f, 5f);
-        position.set(0 - dimension.x / 2, 0 - dimension.y / 2);
+        setSize(5f, 5f);
+        setPosition(0 - getWidth() / 2, 0 - getHeight() / 2);
         Pixmap pix = createPixmap();
         Texture texture = new Texture(pix);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -64,13 +65,13 @@ public class TimeScore extends GameObject {
      * @param spriteBatch
      */
     @Override
-    public void render(SpriteBatch spriteBatch) {
+    public void draw(Batch spriteBatch, float parentAlpha) {
         spriteBatch.draw(reg.getTexture(),
-                position.x, position.y,
-                origin.x, origin.y,
-                dimension.x, dimension.y,
-                scale.x, scale.y,
-                rotation,
+                getX(), getY(),
+                getOriginX(), getOriginY(),
+                getWidth(), getHeight(),
+                getScaleX(), getScaleY(),
+                getRotation(),
                 reg.getRegionX(), reg.getRegionY(),
                 reg.getRegionWidth(), reg.getRegionHeight(),
                 false, false);

@@ -2,16 +2,18 @@ package com.dk.gametest1.game;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dk.gametest1.Constants;
 
 /**
  * Tail of ball
  * Created by dekay on 31.10.2015.
  */
-public class Tail extends GameObject {
+public class Tail extends Actor {
     Vector2 deltaStep;
     private TextureRegion reg; //Texture for tail
 
@@ -53,8 +55,10 @@ public class Tail extends GameObject {
      *
      * @param delta - time between current frame and last one in seconds
      */
-    public void update(float delta) {
-        super.update(delta);
+
+    @Override
+    public void act(float delta) {
+
     }
 
     /**
@@ -62,13 +66,13 @@ public class Tail extends GameObject {
      *
      * @param batch
      */
-    public void render(SpriteBatch batch) {
+    public void draw(Batch batch, float parentAlpha) {
         batch.draw(reg.getTexture(),
-                position.x, position.y,
-                origin.x, origin.y,
-                dimension.x, dimension.y,
-                scale.x, scale.y,
-                rotation,
+                getX(), getY(),
+                getOriginX(), getOriginY(),
+                getWidth(), getHeight(),
+                getScaleX(), getScaleY(),
+                getRotation(),
                 reg.getRegionX(), reg.getRegionY(),
                 reg.getRegionWidth(), reg.getRegionHeight(),
                 false, false);

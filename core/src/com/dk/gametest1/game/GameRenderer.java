@@ -16,7 +16,6 @@ import com.dk.gametest1.Constants;
 public class GameRenderer implements Disposable {
     private GameUpdater gameUpdater; //updater to calculate new positions, dimensions and other of each object
     private SpriteBatch spriteBatch; //batch to draw on it
-    private OrthographicCamera camera;//camera is like users eye has bounds of view
     private OrthographicCamera cameraGUI;//camera to let user see font
     private BitmapFont guiFont;//font
 
@@ -35,13 +34,15 @@ public class GameRenderer implements Disposable {
         guiFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         spriteBatch = new SpriteBatch();
         //Creating two cameras for objects and for font
-        camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
-        camera.position.set(0, 0, 0);
+        gameUpdater.level.getCamera().viewportHeight = Constants.VIEWPORT_HEIGHT;
+        gameUpdater.level.getCamera().viewportWidth = Constants.VIEWPORT_WIDTH;
+        gameUpdater.level.getCamera().position.set(0, 0, 0);
+        gameUpdater.level.getCamera().update();
+
         cameraGUI = new OrthographicCamera(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
         cameraGUI.position.set(0, 0, 0);
         cameraGUI.setToOrtho(true);
         cameraGUI.update();
-        camera.update();
     }
 
     /**
@@ -62,7 +63,7 @@ public class GameRenderer implements Disposable {
     public void resize(int width, int height) {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             Constants.VIEWPORT_WIDTH = width / (height / Constants.VIEWPORT_HEIGHT);
-            camera.viewportWidth = Constants.VIEWPORT_WIDTH;
+            gameUpdater.level.getCamera().viewportWidth = Constants.VIEWPORT_WIDTH;
 
             Constants.VIEWPORT_GUI_WIDTH = width / (height / Constants.VIEWPORT_GUI_HEIGHT);
             cameraGUI.viewportWidth = Constants.VIEWPORT_GUI_WIDTH;
@@ -72,7 +73,7 @@ public class GameRenderer implements Disposable {
 
         } else {
             Constants.VIEWPORT_HEIGHT = height / (width / Constants.VIEWPORT_WIDTH);
-            camera.viewportHeight = Constants.VIEWPORT_HEIGHT;
+            gameUpdater.level.getCamera().viewportHeight = Constants.VIEWPORT_HEIGHT;
 
             Constants.VIEWPORT_GUI_HEIGHT = height / (width / Constants.VIEWPORT_GUI_WIDTH);
             cameraGUI.viewportHeight = Constants.VIEWPORT_GUI_HEIGHT;
@@ -85,27 +86,22 @@ public class GameRenderer implements Disposable {
                 cameraGUI.viewportHeight / 2, 0);
         cameraGUI.update();
 
-        camera.update();
+        gameUpdater.level.getCamera().update();
     }
 
     /**
      * renders game and gui
      */
     public void render() {
-        renderGame(spriteBatch);
+        renderGame();
         renderGUI(spriteBatch);
     }
 
     /**
-     * rendering level using batch
-     *
-     * @param batch
+     * Rendering level
      */
-    private void renderGame(SpriteBatch batch) {
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        gameUpdater.level.render(batch);
-        batch.end();
+    private void renderGame() {
+        gameUpdater.level.draw();
     }
 
     private void renderGUI(SpriteBatch batch) {
