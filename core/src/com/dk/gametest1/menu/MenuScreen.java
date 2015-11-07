@@ -49,7 +49,7 @@ public class MenuScreen extends AbstractScreen {
      */
     @Override
     public void resize(int width, int height) {
-        //menuRenderer.resize(width, height);
+        //Empty method, all necessary changes are being done in StartClass
     }
 
     @Override

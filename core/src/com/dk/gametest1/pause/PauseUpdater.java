@@ -1,18 +1,23 @@
 package com.dk.gametest1.pause;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.dk.gametest1.Constants;
+import com.dk.gametest1.game.GameScreen;
 
 /**
  * Created by Крава on 07.11.2015.
  */
-public class PauseUpdater extends InputAdapter {
+public class PauseUpdater {
     protected Stage stage;
+    private Game game;
     private PauseCircle pauseCircle;
 
-    public PauseUpdater(float x, float y) {
+    public PauseUpdater(float x, float y, Game game) {
+        this.game = game;
         init(x, y);
     }
 
@@ -20,17 +25,26 @@ public class PauseUpdater extends InputAdapter {
         stage = new Stage();
         stage.getCamera().viewportHeight = Constants.VIEWPORT_HEIGHT;
         stage.getCamera().viewportWidth = Constants.VIEWPORT_WIDTH;
-        stage.getCamera().position.set(stage.getCamera().viewportWidth/2, stage.getCamera().viewportHeight/2, 0);
+        stage.getCamera().position.set(stage.getCamera().viewportWidth / 2, stage.getCamera().viewportHeight / 2, 0);
         stage.getCamera().update();
 
 
         pauseCircle = new PauseCircle();
         pauseCircle.setSize(2f, 2f);
-        pauseCircle.setPosition(x, Gdx.graphics.getHeight() - y);
+        pauseCircle.setPosition(x, y);
+        pauseCircle.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new GameScreen(game));
+                return false;
+            }
+        });
+
         stage.addActor(pauseCircle);
+        Gdx.input.setInputProcessor(stage);
     }
 
-    private void update(float delta) {
+    public void update(float delta) {
         stage.act(delta);
     }
 }

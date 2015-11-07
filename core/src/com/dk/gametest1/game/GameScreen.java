@@ -55,7 +55,7 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public void resize(int width, int height) {
-        //gameRenderer.resize(width, height);
+        //Empty method, all necessary changes are being done in StartClass
     }
 
     @Override

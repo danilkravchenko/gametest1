@@ -40,34 +40,6 @@ public class MenuRenderer implements Disposable {
         camera.update();
     }
 
-   /* *//**
-     * Occurs when size of the screen has been changed
-     *
-     * @param width  new width
-     * @param height new height
-     *//*
-    public void resize(int width, int height) {
-        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            //If it's a desktop app so, it is useful to increase the width of the screen
-            //because mostly all monitors has bigger width than height
-            Constants.VIEWPORT_GUI_WIDTH = width / (height / Constants.VIEWPORT_GUI_HEIGHT);
-            camera.viewportWidth = Constants.VIEWPORT_GUI_WIDTH;
-            Constants.DESKTOP_SCALE_X = width / Constants.VIEWPORT_GUI_WIDTH;
-            guiFont.getData().setScale(Constants.DESKTOP_SCALE_X);
-
-        } else {
-            //Here it's more preferable to increase height because game works in portrait mode of the screen
-            Constants.VIEWPORT_GUI_HEIGHT = height / (width / Constants.VIEWPORT_GUI_WIDTH);
-            camera.viewportHeight = Constants.VIEWPORT_GUI_HEIGHT;
-
-            Constants.MOBILE_SCALE_X = height / Constants.VIEWPORT_GUI_HEIGHT;
-            guiFont.getData().setScale(Constants.MOBILE_SCALE_X);
-        }
-        camera.position.set(camera.viewportWidth / 2,
-                camera.viewportHeight / 2, 0);
-        camera.update();
-    }*/
-
     /**
      * Rendering font on the screen
      * for now it's just testing

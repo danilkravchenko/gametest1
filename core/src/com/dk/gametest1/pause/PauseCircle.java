@@ -30,7 +30,7 @@ public class PauseCircle extends Actor {
     @Override
     public void setPosition(float x, float y) {
         float nX = x * Constants.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
-        float nY = y * Constants.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
+        float nY = (Gdx.graphics.getHeight() - y) * Constants.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
         super.setPosition(nX - getWidth() / 2, nY - getHeight() / 2);
     }
 
@@ -46,4 +46,5 @@ public class PauseCircle extends Actor {
                 reg.getRegionWidth(), reg.getRegionHeight(),
                 false, false);
     }
+
 }
