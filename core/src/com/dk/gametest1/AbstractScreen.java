@@ -2,6 +2,7 @@ package com.dk.gametest1;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 
 /**
  * Abstract class that is like a parent for other screens
@@ -28,8 +29,10 @@ public abstract class AbstractScreen implements Screen {
     public abstract void hide();
 
     public void dispose() {
+        Assets.instance.dispose();
     }
 
     public void resume() {
+        Assets.instance.init(new AssetManager());
     }
 }

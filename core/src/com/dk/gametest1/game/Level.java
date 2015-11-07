@@ -29,7 +29,7 @@ public class Level extends Stage{
         for (int i = 0; i < Constants.BALLS_QUANTITY; i++) {
             balls[i] = new Ball();
             balls[i].setOrigin(balls[i].getRadius() / 2, balls[i].getRadius() / 2);
-            balls[i].setPosition(MathUtils.random(-Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_WIDTH / 2), MathUtils.random(-Constants.VIEWPORT_HEIGHT / 2, Constants.VIEWPORT_HEIGHT / 2));
+            balls[i].setPosition(MathUtils.random(0, Constants.VIEWPORT_WIDTH), MathUtils.random(0, Constants.VIEWPORT_HEIGHT));
             this.addActor(balls[i]);
         }
     }

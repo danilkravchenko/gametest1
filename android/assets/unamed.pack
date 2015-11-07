@@ -1,0 +1,12 @@
+
+unamed.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pause_circle
+  rotate: false
+  xy: 1, 1
+  size: 141, 141
+  orig: 141, 141
+  offset: 0, 0
+  index: -1

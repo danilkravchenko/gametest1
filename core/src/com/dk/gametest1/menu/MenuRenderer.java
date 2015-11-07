@@ -40,12 +40,12 @@ public class MenuRenderer implements Disposable {
         camera.update();
     }
 
-    /**
+   /* *//**
      * Occurs when size of the screen has been changed
      *
      * @param width  new width
      * @param height new height
-     */
+     *//*
     public void resize(int width, int height) {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             //If it's a desktop app so, it is useful to increase the width of the screen
@@ -66,7 +66,7 @@ public class MenuRenderer implements Disposable {
         camera.position.set(camera.viewportWidth / 2,
                 camera.viewportHeight / 2, 0);
         camera.update();
-    }
+    }*/
 
     /**
      * Rendering font on the screen

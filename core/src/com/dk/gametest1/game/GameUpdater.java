@@ -22,8 +22,8 @@ public class GameUpdater extends InputAdapter {
     /**
      * pauses the game
      */
-    private void backToMenu() {
-        game.setScreen(new PauseScreen(game));
+    private void backToMenu(float x, float y) {
+        game.setScreen(new PauseScreen(game, x, y));
     }
 
     /**
@@ -60,7 +60,7 @@ public class GameUpdater extends InputAdapter {
      */
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        backToMenu();
+        backToMenu(screenX, screenY);
         return false;
     }
 

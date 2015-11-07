@@ -119,7 +119,7 @@ public class Ball extends Actor {
     }
 
     /**
-     * updating ball's position
+     * updating ball
      * @param delta
      */
     @Override

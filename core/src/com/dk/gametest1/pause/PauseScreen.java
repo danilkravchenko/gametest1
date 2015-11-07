@@ -14,9 +14,12 @@ import com.dk.gametest1.menu.MenuScreen;
  */
 public class PauseScreen extends AbstractScreen {
     private PauseRenderer pauseRenderer;
+    private PauseUpdater pauseUpdater;
 
-    public PauseScreen(Game game) {
+
+    public PauseScreen(Game game, float x, float y) {
         super(game);
+        pauseUpdater = new PauseUpdater(x, y);
     }
 
     /**
@@ -24,8 +27,13 @@ public class PauseScreen extends AbstractScreen {
      */
     @Override
     public void show() {
-        pauseRenderer = new PauseRenderer();
+        pauseRenderer = new PauseRenderer(pauseUpdater);
         Gdx.input.setCatchBackKey(true);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
     }
 
     /**
@@ -46,17 +54,6 @@ public class PauseScreen extends AbstractScreen {
             game.setScreen(new GameScreen(game));
         }
 
-    }
-
-    /**
-     * Occurs when the screen size has been changed
-     *
-     * @param width  new width
-     * @param height new height
-     */
-    @Override
-    public void resize(int width, int height) {
-        pauseRenderer.resize(width, height);
     }
 
     @Override
