@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.dk.gametest1.AbstractScreen;
+import com.dk.gametest1.Constants;
 import com.dk.gametest1.menu.MenuScreen;
 
 /**
@@ -44,7 +45,7 @@ public class PauseScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         pauseUpdater.update(delta);
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(Constants.LIGHT.r, Constants.LIGHT.g, Constants.LIGHT.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         pauseRenderer.render();
         if (Gdx.input.isKeyPressed(Input.Keys.BACK) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
