@@ -38,7 +38,6 @@ public class PauseUpdater {
                 return false;
             }
         });
-
         stage.addActor(pauseCircle);
         Gdx.input.setInputProcessor(stage);
     }
