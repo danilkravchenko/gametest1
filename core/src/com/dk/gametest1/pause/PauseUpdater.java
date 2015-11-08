@@ -27,7 +27,6 @@ public class PauseUpdater {
         stage.getCamera().position.set(stage.getCamera().viewportWidth / 2, stage.getCamera().viewportHeight / 2, 0);
         stage.getCamera().update();
 
-
         pauseCircle = new PauseCircle();
         pauseCircle.setSize(2f, 2f);
         pauseCircle.setPosition(x, y);
