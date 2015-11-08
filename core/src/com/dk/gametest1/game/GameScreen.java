@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.dk.gametest1.AbstractScreen;
 import com.dk.gametest1.Constants;
+import com.dk.gametest1.menu.MenuScreen;
 import com.dk.gametest1.pause.PauseRenderer;
 import com.dk.gametest1.pause.PauseUpdater;
 
@@ -23,6 +24,8 @@ public class GameScreen extends AbstractScreen {
         super(game);
         gameUpdater = new GameUpdater(game);
         gameRenderer = new GameRenderer(gameUpdater);
+        pauseUpdater = new PauseUpdater(this);
+        pauseRenderer = new PauseRenderer(pauseUpdater);
     }
 
     /**
@@ -39,6 +42,11 @@ public class GameScreen extends AbstractScreen {
         Gdx.input.setInputProcessor(this);
         gameState = GAME_STATE.RUNNING;
         gameUpdater.level.score.startTimer();
+
+    }
+
+    public void backToMenu() {
+        game.setScreen(new MenuScreen(game));
     }
 
     /**
@@ -48,7 +56,7 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(Constants.LIGHT.r, Constants.LIGHT.g, Constants.LIGHT.b, 1);//Clears the screen to color set in parameters
+        Gdx.gl.glClearColor(Constants.LIGHT.r, Constants.LIGHT.g, Constants.LIGHT.b, 1f);//Clears the screen to color set in parameters
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         switch (gameState) {
             case RUNNING:
@@ -78,6 +86,7 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public void pause() {
+        System.out.println("pause");
         if (gameState == GAME_STATE.RUNNING) {
             gameState = GAME_STATE.PAUSED;
             pauseGame(Gdx.input.getX(), Gdx.input.getY());
@@ -89,9 +98,9 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public void hide() {
+        System.out.println("hide");
         gameRenderer.dispose();
-        if (pauseRenderer != null)
-            pauseRenderer.dispose();
+        pauseRenderer.dispose();
         Gdx.input.setCatchBackKey(false);
     }
 
@@ -111,7 +120,8 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        pauseGame(screenX, screenY);
+        if (gameState == GAME_STATE.RUNNING)
+            pauseGame(screenX, screenY);
         return false;
     }
 
@@ -122,8 +132,7 @@ public class GameScreen extends AbstractScreen {
      * @param y
      */
     private void pauseGame(int x, int y) {
-        pauseUpdater = new PauseUpdater(x, y, this);
-        pauseRenderer = new PauseRenderer(pauseUpdater);
+        pauseUpdater.setPauseCirclePosition(x, y);
         gameUpdater.level.score.stopTimer();
         gameState = GAME_STATE.PAUSED;
     }
@@ -133,6 +142,7 @@ public class GameScreen extends AbstractScreen {
      */
     public enum GAME_STATE {
         RUNNING,
-        PAUSED
+        PAUSED,
+        JUST_STARTED
     }
 }

@@ -11,7 +11,6 @@ import com.dk.gametest1.Constants;
  * Created by Крава on 07.11.2015.
  */
 public class PauseCircle extends Actor {
-
     private TextureRegion reg;
 
     public PauseCircle() {
@@ -46,5 +45,4 @@ public class PauseCircle extends Actor {
                 reg.getRegionWidth(), reg.getRegionHeight(),
                 false, false);
     }
-
 }

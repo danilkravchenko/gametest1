@@ -12,6 +12,7 @@ import com.dk.gametest1.game.GameScreen;
  */
 public class MenuScreen extends AbstractScreen {
     private MenuRenderer menuRenderer;//renderer to draw objects
+    private int time = 100;
 
     public MenuScreen(Game game) {
         super(game);
@@ -33,8 +34,8 @@ public class MenuScreen extends AbstractScreen {
      */
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl20.glClearColor(1, 1, 0, 1);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuRenderer.render();
         if (Gdx.input.isTouched()) {
             game.setScreen(new GameScreen(game));

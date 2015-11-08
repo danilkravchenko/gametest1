@@ -1,9 +1,10 @@
 package com.dk.gametest1.pause;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.dk.gametest1.Constants;
 import com.dk.gametest1.game.GameScreen;
 
@@ -15,12 +16,12 @@ public class PauseUpdater {
     private GameScreen gameScreen;
     private PauseCircle pauseCircle;
 
-    public PauseUpdater(float x, float y, GameScreen gameScreen) {
+    public PauseUpdater(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
-        init(x, y);
+        init();
     }
 
-    private void init(float x, float y) {
+    private void init() {
         stage = new Stage();
         stage.getCamera().viewportHeight = Constants.VIEWPORT_HEIGHT;
         stage.getCamera().viewportWidth = Constants.VIEWPORT_WIDTH;
@@ -29,15 +30,24 @@ public class PauseUpdater {
 
         pauseCircle = new PauseCircle();
         pauseCircle.setSize(2f, 2f);
-        pauseCircle.setPosition(x, y);
-        pauseCircle.addListener(new InputListener() {
+        stage.addActor(pauseCircle);
+        pauseCircle.addListener(new ActorGestureListener(1, 0f, 0.2f, 0) {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public boolean longPress(Actor actor, float x, float y) {
                 gameScreen.changeBeforeRender();
                 return false;
             }
+
+            @Override
+            public void tap(InputEvent event, float x, float y, int count, int button) {
+                gameScreen.backToMenu();
+            }
         });
-        stage.addActor(pauseCircle);
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    public void setPauseCirclePosition(float x, float y) {
+        pauseCircle.setPosition(x, y);
         Gdx.input.setInputProcessor(stage);
     }
 

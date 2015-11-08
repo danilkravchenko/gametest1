@@ -33,6 +33,7 @@ public class TimeScore extends Actor {
                 increaseTime();
             }
         }, 1, 1);
+        timer.stop();
         setSize(5f, 5f);
         setPosition(0 - getWidth() / 2, 0 - getHeight() / 2);
         Pixmap pix = createPixmap();

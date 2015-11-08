@@ -1,8 +1,6 @@
 package com.dk.gametest1.game;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.dk.gametest1.Constants;
 
@@ -29,7 +27,7 @@ public class Level extends Stage{
         for (int i = 0; i < Constants.BALLS_QUANTITY; i++) {
             balls[i] = new Ball();
             balls[i].setOrigin(balls[i].getRadius() / 2, balls[i].getRadius() / 2);
-            balls[i].setPosition(MathUtils.random(0, Constants.VIEWPORT_WIDTH), MathUtils.random(0, Constants.VIEWPORT_HEIGHT));
+            balls[i].setPosition(MathUtils.random(-Constants.VIEWPORT_WIDTH / 2, Constants.VIEWPORT_WIDTH / 2), MathUtils.random(-Constants.VIEWPORT_HEIGHT / 2, Constants.VIEWPORT_HEIGHT / 2));
             this.addActor(balls[i]);
         }
     }
