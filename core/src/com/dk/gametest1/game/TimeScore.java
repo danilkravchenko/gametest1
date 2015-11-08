@@ -83,4 +83,12 @@ public class TimeScore extends Actor {
     private void increaseTime() {
         time++;
     }
+
+    public void stopTimer() {
+        timer.stop();
+    }
+
+    public void startTimer() {
+        timer.start();
+    }
 }

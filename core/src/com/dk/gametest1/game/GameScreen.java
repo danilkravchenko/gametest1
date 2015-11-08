@@ -5,18 +5,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.dk.gametest1.AbstractScreen;
 import com.dk.gametest1.Constants;
+import com.dk.gametest1.pause.PauseRenderer;
+import com.dk.gametest1.pause.PauseUpdater;
 
 /**
  * Just game screen
  * Created by dekay on 03.11.2015.
  */
 public class GameScreen extends AbstractScreen {
+    public static GAME_STATE gameState;
     private GameRenderer gameRenderer;
     private GameUpdater gameUpdater;
-    private boolean pause;
+    private PauseUpdater pauseUpdater;
+    private PauseRenderer pauseRenderer;
 
     public GameScreen(Game game) {
         super(game);
+        gameUpdater = new GameUpdater(game);
+        gameRenderer = new GameRenderer(gameUpdater);
     }
 
     /**
@@ -25,11 +31,14 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public void show() {
+        changeBeforeRender();
+    }
 
-        gameUpdater = new GameUpdater(game);
-        gameRenderer = new GameRenderer(gameUpdater);
+    public void changeBeforeRender() {
         Gdx.input.setCatchBackKey(true);
-        pause = false;
+        Gdx.input.setInputProcessor(this);
+        gameState = GAME_STATE.RUNNING;
+        gameUpdater.level.score.startTimer();
     }
 
     /**
@@ -39,12 +48,18 @@ public class GameScreen extends AbstractScreen {
      */
     @Override
     public void render(float delta) {
-        if (!pause) {
-            gameUpdater.update(delta);
-        }
         Gdx.gl.glClearColor(Constants.LIGHT.r, Constants.LIGHT.g, Constants.LIGHT.b, 1);//Clears the screen to color set in parameters
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        gameRenderer.render();
+        switch (gameState) {
+            case RUNNING:
+                gameUpdater.update(delta);
+                gameRenderer.render();
+                break;
+            case PAUSED:
+                pauseUpdater.update(delta);
+                pauseRenderer.render();
+                break;
+        }
     }
 
     /**
@@ -58,9 +73,15 @@ public class GameScreen extends AbstractScreen {
         //Empty method, all necessary changes are being done in StartClass
     }
 
+    /**
+     * If game is being paused
+     */
     @Override
     public void pause() {
-        pause = true;
+        if (gameState == GAME_STATE.RUNNING) {
+            gameState = GAME_STATE.PAUSED;
+            pauseGame(Gdx.input.getX(), Gdx.input.getY());
+        }
     }
 
     /**
@@ -69,12 +90,49 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void hide() {
         gameRenderer.dispose();
+        if (pauseRenderer != null)
+            pauseRenderer.dispose();
         Gdx.input.setCatchBackKey(false);
     }
 
     @Override
     public void resume() {
         super.resume();
-        pause = false;
+    }
+
+    /**
+     * Occurs the user releases mouse or finger
+     *
+     * @param screenX
+     * @param screenY
+     * @param pointer
+     * @param button
+     * @return
+     */
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        pauseGame(screenX, screenY);
+        return false;
+    }
+
+    /**
+     * Pause the game
+     *
+     * @param x
+     * @param y
+     */
+    private void pauseGame(int x, int y) {
+        pauseUpdater = new PauseUpdater(x, y, this);
+        pauseRenderer = new PauseRenderer(pauseUpdater);
+        gameUpdater.level.score.stopTimer();
+        gameState = GAME_STATE.PAUSED;
+    }
+
+    /**
+     * Game states
+     */
+    public enum GAME_STATE {
+        RUNNING,
+        PAUSED
     }
 }

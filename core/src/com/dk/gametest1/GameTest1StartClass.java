@@ -33,6 +33,5 @@ public class GameTest1StartClass extends Game {
 
             Constants.MOBILE_SCALE_X = height / Constants.VIEWPORT_GUI_HEIGHT;
         }
-        System.out.println(Constants.VIEWPORT_GUI_WIDTH + "  " + Constants.VIEWPORT_GUI_HEIGHT);
     }
 }

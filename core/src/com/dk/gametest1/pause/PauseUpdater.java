@@ -1,6 +1,5 @@
 package com.dk.gametest1.pause;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -13,11 +12,11 @@ import com.dk.gametest1.game.GameScreen;
  */
 public class PauseUpdater {
     protected Stage stage;
-    private Game game;
+    private GameScreen gameScreen;
     private PauseCircle pauseCircle;
 
-    public PauseUpdater(float x, float y, Game game) {
-        this.game = game;
+    public PauseUpdater(float x, float y, GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
         init(x, y);
     }
 
@@ -35,7 +34,7 @@ public class PauseUpdater {
         pauseCircle.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new GameScreen(game));
+                gameScreen.changeBeforeRender();
                 return false;
             }
         });
