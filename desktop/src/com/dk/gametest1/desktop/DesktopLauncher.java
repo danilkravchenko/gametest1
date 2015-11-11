@@ -7,6 +7,8 @@ import com.dk.gametest1.GameTest1StartClass;
 public class DesktopLauncher {
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.width = 480;
+        config.height = 640;
         new LwjglApplication(new GameTest1StartClass(), config);
     }
 }

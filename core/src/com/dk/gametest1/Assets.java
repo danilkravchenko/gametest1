@@ -15,6 +15,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public static final Assets instance = new Assets();
     public PauseCircle pauseCircle;
     public Background background;
+    public TimerCircle timerCircle;
     private AssetManager assetManager;
 
     private Assets() {
@@ -28,6 +29,7 @@ public class Assets implements Disposable, AssetErrorListener {
         TextureAtlas atlas = assetManager.get(TEXTURE_ATLAS);
         pauseCircle = new PauseCircle(atlas);
         background = new Background(atlas);
+        timerCircle = new TimerCircle(atlas);
     }
 
 
@@ -55,6 +57,14 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public Background(TextureAtlas atlas) {
             back = atlas.findRegion("back");
+        }
+    }
+
+    public class TimerCircle {
+        public final TextureAtlas.AtlasRegion circle;
+
+        public TimerCircle(TextureAtlas atlas) {
+            circle = atlas.findRegion("timer_circle");
         }
     }
 }

@@ -12,8 +12,7 @@ public final class Constants {
     public static final float BALL_RADIUS = 0.8f;   //размер шарика
     public static final int SMALL_BALL_RADIUS_FOR_BITMAP = 128;
     public static final float SMALL_BALL_SPEED = 2f;   //easy - 15, medium - 20, hard - 25
-    public static final int CIRCLE_RADIUS = 150;        //timer outer radius
-    public static final int CIRCLE_RADIUS2 = 143;       //timer inner radius
+    public static final int TIMER_CIRCLE_RADIUS = 3;        //timer outer radius
     public static final int FONT_SIZE = 72;
     public static final Color DARK = new Color(0.066f, 0.094f, 0.121f, 1);
     public static final Color LIGHT = new Color(0.95f, 0.95f, 0.95f, 1);

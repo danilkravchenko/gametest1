@@ -21,8 +21,8 @@ public class Ball extends Actor {
     private Pixmap pixmap; //visual representation for ball
     private TextureRegion textureRegion; //texture for ball
     private int radius; //radius of bitmap
-    private Tail bigTail; //everything is clear
-    private Tail smallTail;
+    // private Tail bigTail; //everything is clear
+    // private Tail smallTail;
 
     public Ball() {
         init();
