@@ -135,13 +135,13 @@ public class Ball extends Actor {
      */
     private void updateX(float delta) {
         setX(getX() + speedXY.x * delta);
-        if (getX() >= Constants.VIEWPORT_WIDTH / 2 - getWidth()) {
-            setX(Constants.VIEWPORT_WIDTH / 2 - getWidth());
+        if (getX() >= Constants.VIEWPORT_WIDTH / 2 - getWidth() - Constants.VIEWPORT_WIDTH * 0.012f) {
+            setX(Constants.VIEWPORT_WIDTH / 2 - getWidth() - Constants.VIEWPORT_WIDTH * 0.012f);
             speedXY.x = -speedXY.x;
         }
 
-        if (getX() <= -Constants.VIEWPORT_WIDTH / 2) {
-            setX(-Constants.VIEWPORT_WIDTH / 2);
+        if (getX() <= -Constants.VIEWPORT_WIDTH / 2 + Constants.VIEWPORT_WIDTH * 0.012f) {
+            setX(-Constants.VIEWPORT_WIDTH / 2 + Constants.VIEWPORT_WIDTH * 0.012f);
             speedXY.x = -speedXY.x;
         }
     }
@@ -153,12 +153,12 @@ public class Ball extends Actor {
      */
     private void updateY(float delta) {
         setY(getY() + speedXY.y * delta);
-        if (getY() >= Constants.VIEWPORT_HEIGHT / 2 - getHeight()) {
-            setY(Constants.VIEWPORT_HEIGHT / 2 - getHeight());
+        if (getY() >= Constants.VIEWPORT_HEIGHT / 2 - getHeight() - Constants.VIEWPORT_WIDTH * 0.012f) {
+            setY(Constants.VIEWPORT_HEIGHT / 2 - getHeight() - Constants.VIEWPORT_WIDTH * 0.012f);
             speedXY.y = -speedXY.y;
         }
-        if (getY() <= -Constants.VIEWPORT_HEIGHT / 2) {
-            setY(-Constants.VIEWPORT_HEIGHT / 2);
+        if (getY() <= -Constants.VIEWPORT_HEIGHT / 2 + Constants.VIEWPORT_WIDTH * 0.012f) {
+            setY(-Constants.VIEWPORT_HEIGHT / 2 + Constants.VIEWPORT_WIDTH * 0.012f);
             speedXY.y = -speedXY.y;
         }
     }
