@@ -21,16 +21,12 @@ public class GameTest1StartClass extends Game {
         //super.resize(width, height);
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             Constants.VIEWPORT_WIDTH = width / (height / Constants.VIEWPORT_HEIGHT);
-
             Constants.VIEWPORT_GUI_WIDTH = width / (height / Constants.VIEWPORT_GUI_HEIGHT);
-
             Constants.DESKTOP_SCALE_X = width / Constants.VIEWPORT_GUI_WIDTH;
 
         } else {
             Constants.VIEWPORT_HEIGHT = height / (width / Constants.VIEWPORT_WIDTH);
-
             Constants.VIEWPORT_GUI_HEIGHT = height / (width / Constants.VIEWPORT_GUI_WIDTH);
-
             Constants.MOBILE_SCALE_X = height / Constants.VIEWPORT_GUI_HEIGHT;
         }
     }

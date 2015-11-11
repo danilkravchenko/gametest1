@@ -59,7 +59,7 @@ public class GameRenderer implements Disposable {
      */
     public void render() {
         renderGame();
-        renderGUI(spriteBatch);
+        renderGUI();
     }
 
     /**
@@ -69,16 +69,15 @@ public class GameRenderer implements Disposable {
         gameUpdater.level.draw();
     }
 
-    private void renderGUI(SpriteBatch batch) {
-        renderGUITimer(batch);
+
+    private void renderGUI() {
+        renderGUITimer();
     }
 
     /**
      * Rendering timer using batch
-     *
-     * @param batch
      */
-    private void renderGUITimer(SpriteBatch batch) {
+    private void renderGUITimer() {
         //Setting the scale by checking type of the app
         float scale;
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -87,17 +86,18 @@ public class GameRenderer implements Disposable {
             scale = Constants.MOBILE_SCALE_X;
         }
         guiFont.getData().setScale(scale);
-        batch.setProjectionMatrix(cameraGUI.combined);
-        batch.begin();
+        spriteBatch.setProjectionMatrix(cameraGUI.combined);
+        spriteBatch.begin();
         //Setting position for the numbers of timer by using size of font and scale
         long time = gameUpdater.level.score.time;
         if (time < 10) {
-            guiFont.draw(batch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 4 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));
+            guiFont.draw(spriteBatch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 4 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));
         } else if (time >= 10 && time < 100) {
-            guiFont.draw(batch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 2 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));
+            guiFont.draw(spriteBatch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 2 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));
         } else {
-            guiFont.draw(batch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 2 + Constants.FONT_SIZE / 4 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));
+            guiFont.draw(spriteBatch, String.valueOf(time), cameraGUI.position.x - scale * (Constants.FONT_SIZE / 2 + Constants.FONT_SIZE / 4 - 2), cameraGUI.position.y - scale * (Constants.FONT_SIZE / 4 + 4));
         }
-        batch.end();
+        spriteBatch.end();
     }
+
 }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Color;
  * Created by dekay on 30.10.2015.
  */
 
-public class Constants {
+public final class Constants {
     public static final int BALLS_QUANTITY = 5;     //easy - 3, medium - 4, hard - 5 (посмотрим как будет с препятствиями)
     public static final float BALL_RADIUS = 0.8f;   //размер шарика
     public static final int SMALL_BALL_RADIUS_FOR_BITMAP = 128;

@@ -11,9 +11,10 @@ import com.badlogic.gdx.utils.Disposable;
  * Created by Крава on 07.11.2015.
  */
 public class Assets implements Disposable, AssetErrorListener {
-    public static final String TEXTURE_ATLAS = "unamed.pack";
+    public static final String TEXTURE_ATLAS = "text.pack";
     public static final Assets instance = new Assets();
     public PauseCircle pauseCircle;
+    public Background background;
     private AssetManager assetManager;
 
     private Assets() {
@@ -26,13 +27,14 @@ public class Assets implements Disposable, AssetErrorListener {
         assetManager.finishLoading();
         TextureAtlas atlas = assetManager.get(TEXTURE_ATLAS);
         pauseCircle = new PauseCircle(atlas);
+        background = new Background(atlas);
     }
 
 
     @Override
     public void error(AssetDescriptor asset, Throwable throwable) {
         Gdx.app.error("Assets", "Couldn't load asset '"
-                + asset.fileName + "'", (Exception) throwable);
+                + asset.fileName + "'", throwable);
     }
 
     @Override
@@ -45,6 +47,14 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public PauseCircle(TextureAtlas atlas) {
             pCircle = atlas.findRegion("pause_circle");
+        }
+    }
+
+    public class Background {
+        public final TextureAtlas.AtlasRegion back;
+
+        public Background(TextureAtlas atlas) {
+            back = atlas.findRegion("back");
         }
     }
 }

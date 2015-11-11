@@ -42,7 +42,6 @@ public class GameScreen extends AbstractScreen {
         Gdx.input.setInputProcessor(this);
         gameState = GAME_STATE.RUNNING;
         gameUpdater.level.score.startTimer();
-
     }
 
     public void backToMenu() {

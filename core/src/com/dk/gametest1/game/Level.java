@@ -9,9 +9,10 @@ import com.dk.gametest1.Constants;
  * Created by dekay on 30.10.2015.
  */
 
-public class Level extends Stage{
+public class Level extends Stage {
     protected Ball[] balls;
     protected TimeScore score;
+    protected Background background;
 
     public Level(String path) {
         init();
@@ -21,9 +22,12 @@ public class Level extends Stage{
      * Initializing all game objects
      */
     private void init() {
-        balls = new Ball[Constants.BALLS_QUANTITY];
+        background = new Background();
+        this.addActor(background);
+
         score = new TimeScore();
-        this.addActor(score);
+
+        balls = new Ball[Constants.BALLS_QUANTITY];
         for (int i = 0; i < Constants.BALLS_QUANTITY; i++) {
             balls[i] = new Ball();
             balls[i].setOrigin(balls[i].getRadius() / 2, balls[i].getRadius() / 2);
