@@ -1,7 +1,7 @@
 package com.dk.gametest1;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 
@@ -10,11 +10,11 @@ import com.badlogic.gdx.assets.AssetManager;
  * Created by dekay on 03.11.2015.
  */
 public abstract class AbstractScreen extends InputAdapter implements Screen {
-    protected Game game; //our main game or object of GameTest1StartClass
+    protected DirectedGame game; //our main game or object of GameTest1StartClass
     //Need to give access to the game instance for all screens to allow them change the screens by calling setScreen method
     //of game object
 
-    public AbstractScreen(Game game) {
+    public AbstractScreen(DirectedGame game) {
         this.game = game;
     }
 
@@ -28,6 +28,8 @@ public abstract class AbstractScreen extends InputAdapter implements Screen {
     public abstract void pause();
 
     public abstract void hide();
+
+    public abstract InputProcessor getInputProcessor();
 
     public void dispose() {
         Assets.instance.dispose();

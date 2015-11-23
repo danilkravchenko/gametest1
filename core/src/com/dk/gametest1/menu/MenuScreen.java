@@ -1,9 +1,10 @@
 package com.dk.gametest1.menu;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.dk.gametest1.AbstractScreen;
+import com.dk.gametest1.DirectedGame;
 import com.dk.gametest1.game.GameScreen;
 
 /**
@@ -14,8 +15,13 @@ public class MenuScreen extends AbstractScreen {
     private MenuRenderer menuRenderer;//renderer to draw objects
     private int time = 100;
 
-    public MenuScreen(Game game) {
+    public MenuScreen(DirectedGame game) {
         super(game);
+    }
+
+    @Override
+    public InputProcessor getInputProcessor() {
+        return this;
     }
 
     /**

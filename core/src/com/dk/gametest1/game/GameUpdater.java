@@ -1,7 +1,7 @@
 package com.dk.gametest1.game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.InputAdapter;
+import com.dk.gametest1.DirectedGame;
 
 /**
  * GameUpdater holds level, updates and renders it
@@ -9,10 +9,10 @@ import com.badlogic.gdx.InputAdapter;
  */
 public class GameUpdater extends InputAdapter {
     protected Level level;
-    private Game game;//main instance that allows to change screens
+    private DirectedGame game;//main instance that allows to change screens
 
 
-    public GameUpdater(Game game) {
+    public GameUpdater(DirectedGame game) {
         this.game = game;
         init();
     }

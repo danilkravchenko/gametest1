@@ -21,6 +21,10 @@ public class PauseUpdater {
         init();
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
     private void init() {
         stage = new Stage();
         stage.getCamera().viewportHeight = Constants.VIEWPORT_HEIGHT;
@@ -31,7 +35,7 @@ public class PauseUpdater {
         pauseCircle = new PauseCircle();
         pauseCircle.setSize(2f, 2f);
         stage.addActor(pauseCircle);
-        pauseCircle.addListener(new ActorGestureListener(1, 0f, 0.2f, 0) {
+        pauseCircle.addListener(new ActorGestureListener(1, 1f, 0.2f, 0) {
             @Override
             public boolean longPress(Actor actor, float x, float y) {
                 gameScreen.changeBeforeRender();
@@ -41,6 +45,7 @@ public class PauseUpdater {
             @Override
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 gameScreen.backToMenu();
+                System.out.println("back");
             }
         });
         Gdx.input.setInputProcessor(stage);

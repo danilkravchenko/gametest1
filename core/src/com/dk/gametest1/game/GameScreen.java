@@ -1,10 +1,11 @@
 package com.dk.gametest1.game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.dk.gametest1.AbstractScreen;
 import com.dk.gametest1.Constants;
+import com.dk.gametest1.DirectedGame;
 import com.dk.gametest1.menu.MenuScreen;
 import com.dk.gametest1.pause.PauseRenderer;
 import com.dk.gametest1.pause.PauseUpdater;
@@ -20,12 +21,17 @@ public class GameScreen extends AbstractScreen {
     private PauseUpdater pauseUpdater;
     private PauseRenderer pauseRenderer;
 
-    public GameScreen(Game game) {
+    public GameScreen(DirectedGame game) {
         super(game);
         gameUpdater = new GameUpdater(game);
         gameRenderer = new GameRenderer(gameUpdater);
         pauseUpdater = new PauseUpdater(this);
         pauseRenderer = new PauseRenderer(pauseUpdater);
+    }
+
+    @Override
+    public InputProcessor getInputProcessor() {
+        return this;
     }
 
     /**
