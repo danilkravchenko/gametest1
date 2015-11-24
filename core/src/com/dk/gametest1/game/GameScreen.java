@@ -69,7 +69,7 @@ public class GameScreen extends AbstractScreen {
                 gameRenderer.render();
                 break;
             case PAUSED:
-                pauseUpdater.update(delta);
+                pauseUpdater.act(delta);
                 pauseRenderer.render();
                 break;
         }

@@ -11,11 +11,12 @@ import com.badlogic.gdx.utils.Disposable;
  * Created by Крава on 07.11.2015.
  */
 public class Assets implements Disposable, AssetErrorListener {
-    public static final String TEXTURE_ATLAS = "text.pack";
+    public static final String TEXTURE_ATLAS = "textatlas.pack";
     public static final Assets instance = new Assets();
     public PauseCircle pauseCircle;
     public Background background;
     public TimerCircle timerCircle;
+    public MenuCircle menuCircle;
     private AssetManager assetManager;
 
     private Assets() {
@@ -30,6 +31,7 @@ public class Assets implements Disposable, AssetErrorListener {
         pauseCircle = new PauseCircle(atlas);
         background = new Background(atlas);
         timerCircle = new TimerCircle(atlas);
+        menuCircle = new MenuCircle(atlas);
     }
 
 
@@ -65,6 +67,14 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public TimerCircle(TextureAtlas atlas) {
             circle = atlas.findRegion("timer_circle");
+        }
+    }
+
+    public class MenuCircle {
+        public final TextureAtlas.AtlasRegion menuCircle;
+
+        public MenuCircle(TextureAtlas atlas) {
+            menuCircle = atlas.findRegion("menu_circle");
         }
     }
 }

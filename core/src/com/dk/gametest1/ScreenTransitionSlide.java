@@ -42,22 +42,28 @@ public class ScreenTransitionSlide implements ScreenTransition {
         float h = currScreen.getHeight();
         float x = 0;
         float y = 0;
+        float x1 = 0;
+        float y2 = 0;
         if (easing != null) alpha = easing.apply(alpha);
 // calculate position offset
         switch (direction) {
             case LEFT:
+                x1 = -w * alpha;
                 x = -w * alpha;
                 if (!slideOut) x += w;
                 break;
             case RIGHT:
                 x = w * alpha;
+                x1 = w * alpha;
                 if (!slideOut) x -= w;
                 break;
             case UP:
                 y = h * alpha;
+                y2 = h * alpha;
                 if (!slideOut) y -= h;
                 break;
             case DOWN:
+                y2 = -h * alpha;
                 y = -h * alpha;
                 if (!slideOut) y += h;
                 break;
@@ -69,7 +75,7 @@ public class ScreenTransitionSlide implements ScreenTransition {
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.draw(texBottom, 0, 0, 0, 0, w, h, 1, 1, 0, 0, 0,
+        batch.draw(texBottom, x1, y2, 0, 0, w, h, 1, 1, 0, 0, 0,
                 currScreen.getWidth(), currScreen.getHeight(),
                 false, true);
         batch.draw(texTop, x, y, 0, 0, w, h, 1, 1, 0, 0, 0,

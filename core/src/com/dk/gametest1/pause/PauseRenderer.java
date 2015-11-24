@@ -1,10 +1,7 @@
 package com.dk.gametest1.pause;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Disposable;
+import com.dk.gametest1.Constants;
 
 /**
  * Pause renderer renders all elements that should be on menu screen
@@ -12,7 +9,6 @@ import com.badlogic.gdx.utils.Disposable;
  */
 public class PauseRenderer implements Disposable {
     private PauseUpdater pauseUpdater;
-    private BitmapFont guiFont;//test font to draw word "Pause"
 
     public PauseRenderer(PauseUpdater pauseUpdater) {
         this.pauseUpdater = pauseUpdater;
@@ -20,11 +16,10 @@ public class PauseRenderer implements Disposable {
     }
 
     private void init() {
-        guiFont = new BitmapFont(Gdx.files.internal("f72.fnt"), true);
-        guiFont.setColor(Color.BLACK);
-        //Setting Linear filters to font
-        guiFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        //Creating Orthographic camera with defined Viewports
+        pauseUpdater.getCamera().viewportHeight = Constants.VIEWPORT_HEIGHT;
+        pauseUpdater.getCamera().viewportWidth = Constants.VIEWPORT_WIDTH;
+        pauseUpdater.getCamera().position.set(pauseUpdater.getCamera().viewportWidth / 2, pauseUpdater.getCamera().viewportHeight / 2, 0);
+        pauseUpdater.getCamera().update();
     }
 
     /**
@@ -32,7 +27,7 @@ public class PauseRenderer implements Disposable {
      * for now it's just testing
      */
     public void render() {
-        pauseUpdater.stage.draw();
+        pauseUpdater.draw();
     }
 
     /**
@@ -40,6 +35,5 @@ public class PauseRenderer implements Disposable {
      */
     @Override
     public void dispose() {
-        guiFont.dispose();
     }
 }
