@@ -45,13 +45,13 @@ public class GameScreen extends AbstractScreen {
 
     public void changeBeforeRender() {
         Gdx.input.setCatchBackKey(true);
-        Gdx.input.setInputProcessor(this);
         gameState = GAME_STATE.RUNNING;
         gameUpdater.level.score.startTimer();
     }
 
     public void backToMenu() {
         game.setScreen(new MenuScreen(game));
+
     }
 
     /**

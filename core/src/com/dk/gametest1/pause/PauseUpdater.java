@@ -38,6 +38,7 @@ public class PauseUpdater {
         pauseCircle.addListener(new ActorGestureListener(1, 1f, 0.2f, 0) {
             @Override
             public boolean longPress(Actor actor, float x, float y) {
+                Gdx.input.setInputProcessor(gameScreen);
                 gameScreen.changeBeforeRender();
                 return false;
             }
